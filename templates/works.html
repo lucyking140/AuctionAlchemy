@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <br>
+
+    <div class = "container">
+        <h1>See all works of art -- click the button to see more information </h1>
+
+        <h3> Show me works from a specific ... </h3> <br>
+
+        <!-- exploring dropdowns -->
+
+        <form method="post">
+
+            <label for="dropdownInput">Title:</label>
+            <input list="titles" id="dropdownInput" name="title" autocomplete="on">
+            <datalist id="titles">
+                <option value = "" > </option>
+                    {% for title in titles %}
+                        <option value="{{ title }}"> {{ title }} </option> 
+                    {% endfor %}
+            </datalist>
+            <br>
+
+            <label for="dropdownInput">Artist:</label>
+            <input list="artists" id="dropdownInput" name="artist" autocomplete="on">
+            <datalist id="artists">
+                <option value = "" > </option>
+                    {% for artist in artists %}
+                        <option value="{{ artist }}"> {{ artist }} </option> 
+                    {% endfor %}
+            </datalist>
+            <br>
+
+            <label for="dropdownInput">Movement:</label>
+            <input list="movement" id="dropdownInput" name="movement" autocomplete="on">
+            <datalist id="movement">
+                <option value = "" > </option>
+                {% for mvnt in movements %}
+                    <option value="{{ mvnt }}"> {{ mvnt }} </option> 
+                {% endfor %}
+            </datalist>
+            <br>
+
+            <label for="dropdownInput">World Region:</label>
+            <input list="region" id="dropdownInput" name="region" autocomplete="on">
+            <datalist id="region">
+                <option value = "" > </option>
+                {% for reg in regions %}
+                    <option value="{{ reg }}"> {{ reg }} </option> 
+                {% endfor %}
+            </datalist>
+            <br>
+
+            <label for="dropdownInput">Auction:</label>
+            <input list="auction" id="dropdownInput" name="auction" autocomplete="on">
+            <datalist id="auction">
+                <option value = "" > </option>
+                {% for auction in auctions %}
+                    <option value="{{ auction }}"> {{ auction }} </option> 
+                {% endfor %}
+            </datalist>
+            <br>
+
+            <label for="dropdownInput">Medium:</label>
+            <input list="mediums" id="dropdownInput" name="medium" autocomplete="on">
+            <datalist id="mediums">
+                <option value = "" > </option>
+                    {% for med in mediums %}
+                        <option value="{{ med }}"> {{ med }} </option> 
+                    {% endfor %}
+            </datalist>
+            <br>
+            
+            <button type="submit">Submit</button>
+            <br>
+            <br>
+    </div>
+    
+        <div class="container">
+            {% if not data %} 
+                <p> There are no results for this search. Try another or use the dropdown menus! </p>
+            {% else %}
+                {% for n in data %}
+                <a href="{{ url_for('work_page', title=n.title, year=n.year_created, aid=n.aid) }}"> 
+                    {{n.title}} by
+                    {% if n.first_name %} {{n.first_name}} {% endif %} {% if n.last_name %} {{n.last_name}} {% endif %}
+                    ({{ n.year_created }})
+                </a> <br><br>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+
+{% endblock %}

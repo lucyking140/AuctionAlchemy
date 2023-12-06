@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <br>
+
+    <div class = "container">
+        <h1>All Auction Houses </h1>
+        <br>
+    </div>
+    
+        <div class="container">
+            {% for house in houses %}
+            <a href="{{ url_for('auctionHouse_page', name=house[0]) }}"> 
+                {{ house[0] }}
+            </a> <br><br>
+            {% endfor %}
+        </div>
+
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <title>{{ name }} </title>
+</head>
+
+<br>
+<div class="container">
+    <body>
+        <h1> {{ name }} </h1>
+        
+        <form method="post">
+            <p> This region is liked by <strong> {% if likes[0][0] %} {{ likes[0][0] }} {% else %} 0 {% endif %}</strong> users. </p>
+            {% if button %}
+                <button type="submit" name="Un_follow" value = "Follow"> Like This Region </button> 
+            {% else %} 
+                <button type="submit"  style="background-color: darksalmon" name="Un_follow" value = "Unfollow"> Unlike This Region </button> 
+            {% endif %}
+        </form>
+
+        <h3>Works From This Region: </h3>
+    
+        <!-- displaying all of the lots -->
+        {% if not data %} 
+            <p> Sorry, there are no works from this region of the world. </p>
+        {% else %}
+            <div>
+                {% for n in data %}
+                <a href="{{ url_for('work_page', title=n[1], year=n[2], aid=n[0]) }}"> {{n[1]}}, by {% if n[4] %} {{ n[4] }} {% endif %} {% if n[5] %} {{ n[5] }} {% endif %} ({{ n[2] }})</a> 
+                <br> <br>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </body>
+</div>
+    
+{% endblock %}

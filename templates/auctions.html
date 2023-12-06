@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br>  
+<div class = "container">
+    <h1> All Auctions </h1>
+    <br>
+
+    <form method="POST">
+      <p> Search By ... </p>
+      <label for="dropdownInput">Name:</label>
+            <input list="title" id="dropdownInput" name="title" autocomplete="on">
+            <datalist id="title">
+                <option value = "" > </option>
+                    {% for auction in titles %}
+                        <option value="{{ auction[0] }}"> {{ auction[0] }} </option> 
+                    {% endfor %}
+            </datalist>
+            <br>
+
+            <label for="dropdownInput">Location:</label>
+            <input list="locations" id="dropdownInput" name="location" autocomplete="on">
+            <datalist id="locations">
+                <option value = "" > </option>
+                {% for loc in locations %}
+                    <option value="{{ loc[0] }}"> {{ loc[0] }} </option> 
+                {% endfor %}
+            </datalist>
+            <br>
+
+            <button type="submit">Submit</button>
+            <br>
+            <br>
+    </form>
+
+    <div>
+    {% if not data %} 
+      <p> {{ message }} </p>
+
+    {% else %}
+      {% for n in data %}
+        <a href="{{ url_for('auction_page', title=n.title, date=n.date, house=n.house_name) }}"> {{n.title}} by {{n.house_name}} ({{n.date}}) </a> <br><br>
+      {% endfor %}
+    {% endif %}
+    </div>
+
+  </div> 
+    
+{% endblock %}

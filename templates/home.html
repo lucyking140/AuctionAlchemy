@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+  
+<br>
+<div class = "container">
+    <h1>Welcome to AuctionAlchemy, {{ current_user }}!</h1>
+    <p> Select a link below to explore auctions, artists, and works of art.
+      <br>
+      Like and follow artists and auctions that you enjoy and we'll come up with some more that we think you'll like.</p>
+    
+</div>
+  
+  <div class="container">
+    <a href="{{ url_for('auctions')}}">
+        <button>
+            Auctions
+        </button>
+      </a>
+    
+      <a href="{{ url_for('artists')}}">
+        <button>
+            Artists
+        </button>
+      </a>
+    
+      <a href="{{ url_for('works')}}">
+        <button>
+            Works of Art
+        </button>
+      </a>
+    
+      <a href="{{ url_for('auctionHouses')}}">
+        <button>
+            Auction Houses
+        </button>
+      </a>
+
+      <a href="{{ url_for('regions')}}">
+        <button>
+            World Regions
+        </button>
+      </a>
+
+      <a href="{{ url_for('movements')}}">
+        <button>
+            Historical Movements
+        </button>
+      </a>
+      <br>
+      <br>
+    
+      <a href="{{ url_for('recommendations', username=current_user)}}">
+        <button>
+            Recommendations For You
+        </button>
+      </a>
+  </div>
+
+{% endblock %}

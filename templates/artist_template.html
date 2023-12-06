@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <title>{{ artist[1] }} {{ artist[2] }} </title>
+</head>
+
+<br>
+<div class="container">
+    <body>
+        <h1> {% if artist[1] %} {{ artist[1] }} {% endif %} {% if artist[2] %} {{ artist[2] }} {% endif %}</h1>
+        
+        <!-- displaying all artist info -->
+
+        <p> {{ artist[5] }} </p>
+        <p> {{ artist[4] }} - {{ artist[3] }} </p>
+        
+        <form method="post">
+            <p> This artist is followed by <strong> {% if likes[0][0] %} {{ likes[0][0] }} {% else %} 0 {% endif %} </strong> users. </p>
+            {% if button %}
+                <button type="submit" name="Un_follow" value = "Follow"> Follow This Artist </button> 
+            {% else %} 
+                <button type="submit" style="background-color: darksalmon" name="Un_follow" value = "Unfollow"> Unfollow This Artist </button> 
+            {% endif %}
+        </form>
+    </body>
+</div>
+    
+{% endblock %}

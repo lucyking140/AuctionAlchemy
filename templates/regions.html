@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <br>
+
+    <div class = "container">
+        <h1>All World Regions </h1>
+        <br>
+    </div>
+    
+        <div class="container">
+            {% for region in data %}
+            <a href="{{ url_for('region_page', name=region[0]) }}"> 
+                {{ region[0] }}
+            </a> <br><br>
+            {% endfor %}
+        </div>
+
+
+{% endblock %}

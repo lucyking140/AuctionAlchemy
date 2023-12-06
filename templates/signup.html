@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <br>
+
+    <div class = "container">
+        <h1>Sign Up </h1>
+
+        <h2> Welcome to AuctionAlchemy! Enter your information below to access the site. </h2>
+
+        <br>
+        {% if message is not none %}
+            <p> {{ message }} </p>
+        {% endif %}
+        <br>
+        
+        <form method="post">
+            <label for="first_name">First Name: </label>
+            <input type="text" name="first_name"
+                    placeholder="Enter your first name"
+                    value="" required>
+            </input>
+            <br>
+            <label for="last_name">Last Name: </label>
+            <input type="text" name="last_name"
+                    placeholder="Enter your last name"
+                    value="" required>
+            </input>
+            <br>
+            <label for="email">Email (must be in the format example@ex.ex): </label>
+            <input type="text" name="email"
+                    placeholder="Enter email"
+                    value="" required>
+            </input>
+            <br>
+            <label for="username">Username (must be at least 8 characters and not be used by another user): </label>
+            <input type="text" name="username"
+                    placeholder="Enter your username"
+                    value="" required>
+            </input>
+            <br>
+            <label for="password">Password (must be at least 8 characters and contain at least 1 number): </label>
+            <input type="text" name="password"
+                    placeholder="Enter your password"
+                    value="" required>
+            </input>
+            <br>
+
+            <button type = "submit">Submit</button>
+            
+        </form>
+    </div>
+
+
+{% endblock %}

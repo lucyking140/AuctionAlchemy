@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <br>
+
+    <div class = "container">
+        <h1> {{ user }}'s Recommendations </h1>
+        {% if message %}
+            <h3> {{ message }} </h3>
+        {% else %}
+            <p> We noticed based on your likes that you seem to like art from {% if artist %} <strong>{{ artist[0] }}</strong>, {% endif %} {% if movement %} the <strong>{{ movement }} </strong>movement, {% endif %} {% if region %} and <strong>{{ region }}</strong>{% endif %}.</p>
+            <p> We've picked out some works and auctions that we think you'll like based on these preferences. </p>
+        
+    </div>
+
+    
+
+    <div class = "container">
+        <h3> Works: </h3> 
+        {% for work in works %}
+            <a href="{{ url_for('work_page', title=work[3], year=work[4], aid=work[0]) }}"">
+                {{ work[3] }}, {% if work[1] %} by {{ work[1] }} {% endif %} {% if work[2] %} {{ work[2]}} {% endif %} ({{ work[4] }})
+            </a>
+            <br>
+        {% endfor %}
+        <br>
+    </div>
+    
+    <div class = "container">
+        <h3> Auctions: </h3> 
+        {% if not auctions %} 
+            <p> Keep liking movements and regions to see more auction suggestions! </p>
+        {% else %}
+        {% for auction in auctions %}
+        <a href="{{ url_for('auction_page', title=auction[0], date=auction[1], house=auction[2]) }}"">
+            {{ auction[0] }} by {{ auction[2] }} ({{ auction[1] }})
+            <br>
+        </a>
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% endif %}
+
+{% endblock %}

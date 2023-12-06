@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <br>
+
+    <div class = "container">
+        <h1>All Artists </h1>
+    </div>
+
+    <div class = "container">
+        <form method="post">
+            <input type="checkbox" id="popularity" name="popularity" value="">
+            <label for="popularity"> Sort by popularity </label><br>
+            <button type = "submit"> Submit </button>
+        </form>
+    </div>
+    
+        <div class="container">
+            {% for artist in data %}
+            <a href="{{ url_for('artist_page', aid=artist[0]) }}"> 
+                {% if artist[1] %} {{ artist[1] }} {% endif %} {% if artist[2] %} {{ artist[2] }} {% endif %} ({{ artist[5] }}, {{ artist[4] }} - {{ artist[3] }})
+            </a> <br><br>
+            {% endfor %}
+        </div>
+
+
+{% endblock %}

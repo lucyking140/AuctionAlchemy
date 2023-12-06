@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1> Show me works from a specific ... </h1>
+    <form method="POST" action="/add">
+        <p>Artist: <input type="text" name="artist_name"> <input type="submit" value="Add"></p>
+        <p>Movement: <input type="text" name="movement"> <input type="submit" value="Add"></p>
+        <p>World Region: <input type="text" name="region"> <input type="submit" value="Add"></p>
+        <p>Auction: <input type="text" name="auction"> <input type="submit" value="Add"></p>
+    </form>
+
+    <form method="post">
+        <label for="title">Artist: </label>
+        <input type="text" name="artist"
+               placeholder="Artist Name"
+               value="work_search">
+        </input>
+        <br>
+
+        <label for="title">Movement: </label> <!-- this should prob be a dropdown!-->
+        <input type="text" name="movement"
+               placeholder="Movement Name"
+               value="work_search">
+        </input>
+        <br>
+
+        <label for="title">World Region: </label> <!-- this should prob be a dropdown!-->
+        <input type="text" name="region"
+               placeholder="Region or country"
+               value="work_search">
+        </input>
+        <br>
+
+        <label for="title">Auction: </label>
+        <input type="text" name="auction"
+               placeholder="Auction Name"
+               value="work_search">
+        </input>
+        <br>
+
+        
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
+
+

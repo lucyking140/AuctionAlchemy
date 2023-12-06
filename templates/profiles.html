@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <br>
+    <div class="container">
+        {% for user in users %}
+            {% if user[0] != current_user %}
+                <div class="container custom-container">
+                    <a href="{{ url_for('profile_page', username=user[0]) }}"> {{user[1] }} {{ user[2] }} </a> 
+                    <p> {{ user[0] }} </p>
+                </div>
+                <br>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

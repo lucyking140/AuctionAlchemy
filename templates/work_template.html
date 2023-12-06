@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <title>{{ title }} </title>
+</head>
+
+<br>
+<div class="container">
+    <body>
+        <h1> {{ title }} </h1> <br>
+        
+        <!-- displaying all work info -->
+
+        <p> <strong> Artist: </strong>{{ name }}</p>
+        <p> <strong> Year Created: </strong>{{ year }}</p>
+        <p> <strong> Medium:</strong> {{ data[0][2] }}</p>
+        <p> <strong> Price:</strong> {% for sale in saleInfo %} ${{ sale[0] }} (Est. ${{ sale[2] }} - ${{ sale[1] }}) in {{ sale[3] }} by {{ sale[4] }} ({{sale[5]}})<br> {% endfor %} </p>
+
+        <form method="post">
+            <p> This work is liked by <strong> {% if likes[0][0] %} {{ likes[0][0] }} {% else %} 0 {% endif %} </strong> users. </p>
+            {% if button %}
+                <button type="submit" name="Un_follow" value = "Follow"> Like This Work </button> 
+            {% else %} 
+                <button type="submit" style="background-color: darksalmon" name="Un_follow" value = "Unfollow"> Unlike This Work </button> 
+            {% endif %}
+        </form>
+    </body>
+</div>
+    
+{% endblock %}

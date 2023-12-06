@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <link rel = "stylesheet" type = "text/css" href="{{ url_for('static',filename='healet-html/css/bootstrap.css') }}">
+    <link rel = "stylesheet" type = "text/css" href="{{ url_for('static',filename='healet-html/css/responsive.css') }}">
+    <link rel = "stylesheet" type = "text/css" href="{{ url_for('static',filename='healet-html/css/style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='Aa.ico') }}">
+</head>
+<body>
+  <!-- making a navbar -->
+  <!-- TO IMPROVE: this will technically show up if the user isn't logged in, but all buttons will redirect to login_home -->
+  <!-- might actually be necessary: pass current_user to every page! -->
+  <nav class = "navbar navbar-expand-lg">
+    <a class="navbar-brand" href="{{ url_for('home') }}">
+      <h1> AuctionAlchemy </h1>
+    </a>
+    <div class="navbar-collapse justify-content-end">
+    {% if current_user %}
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('profile_page', username=current_user) }}">Your Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('profiles') }}">All Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+        </li>
+      </ul>
+    {% endif %}
+    </div>
+    
+   
+  </nav>
+
+  {% block content %} {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <title>{{ house[0] }} </title>
+</head>
+
+<br>
+<div class="container">
+    <body>
+        <h1> {{ house[0] }} </h1>
+        
+        <!-- displaying all artist info -->
+
+        <p> Location: {{ house[1] }} </p>
+        <p> Founded in: {{ house[2] }} </p>
+        <p> Current CEO: {{ house[3] }} </p>
+        
+        <p>
+            <strong> Most Common Artists Featured: </strong>
+            {% for art in topArtists %} 
+                {% if art[1] %} {{ art[1] }} {% endif %} {% if art[2] %} {{ art[2] }} {% endif %} ({{ art[3] }} auctions),
+            {% endfor %}
+        </p>
+        
+        <p>
+            <strong> Most Common Movements Featured: </strong>
+            {% for move in topMoves %} 
+                {{ move[0] }} ({{ move[1] }} auctions),
+            {% endfor %}
+        </p>
+        <p>
+            <strong> Most Common Regions Featured: </strong>
+            {% for region in topRegions %} 
+                {{ region[0] }} ({{ region[1] }} auctions),
+            {% endfor %}
+        </p>
+        
+        <form method="post">
+            <p> This house is followed by <strong> {{ likes [0][0]}} </strong> users. </p>
+            {% if button %}
+                <button type="submit" name="Un_follow" value="Follow"> Follow This House </button> 
+            {% else %} 
+                <button type="submit" name="Un_follow" value="Unfollow" style="background-color:darksalmon"> Unfollow This House </button> 
+            {% endif %}
+        </form>
+
+        <h3>Auctions Hosted: </h3>
+        
+        <!-- displaying all of the lots -->
+        <div>
+            {% for n in auctions %}
+            <a href="{{ url_for('auction_page', title=n[0], date=n[1], house=n[4]) }}""> {{n[0]}} ({{n[1]}}) </a> 
+            <br> <br>
+            {% endfor %}
+        </div>
+    </body>
+</div>
+    
+{% endblock %}

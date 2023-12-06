@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<div class = "container">
+
+    <!-- Auction info -->
+    <h1> {{ auction['title'] }} </h1>
+    <p> Date of Closing: {{ auction['date'] }} </p>
+    <p> Location: {{ auction['location'] }} </p>
+    <p> House: {{ auction['house_name'] }} </p>
+    <p> Total Sale Value: ${{ auction['total_sales'] }} </p>
+    
+    {% if not topArtists and not topMovements %}
+            This auction has no works in the database.
+    {% else %}
+        <p>
+            <strong> Most Common Artists Featured: </strong>
+            {% for artist in topArtists %} 
+                {{ artist[0] }} ({{ artist[1] }} works),
+            {% endfor %}
+        </p>
+        <p>
+            <strong> Most Common Movements Featured: </strong>
+            {% for move in topMovements %} 
+                {{ move[0] }} ({{ move[1] }} works),
+            {% endfor %}
+        </p>
+        <p>
+            <strong> Most Common Regions Featured: </strong>
+            {% for region in topRegions %} 
+                {{ region[0] }} ({{ region[1] }} works),
+            {% endfor %}
+        </p>
+    {% endif %}
+
+
+    <!-- dealing with likes stuff -->
+
+    <form method="post">
+        <p> This auction is followed by <strong> {{ likes[0] }} </strong> users. </p>
+        {% if button %}
+            <button type="submit" name="Un_follow" value = "Follow"> Follow This Auction </button> 
+        {% else %} 
+            <button type="submit" style="background-color: darksalmon" name="Un_follow" value = "Unfollow"> Unfollow This Auction </button> 
+        {% endif %}
+    </form>
+
+
+    <h3>Works Sold: </h3>
+    
+    <!-- displaying all of the lots -->
+    <div>
+        {% for n in data %}
+        <a href="{{ url_for('work_page', title=n[0], year=n[1], aid=n[2]) }}""> {{n[0]}}, by {% if n[3] %} {{ n[3] }} {% endif %} {% if n[4] %} {{ n[4] }} {% endif %} ({{ n[1] }})</a> 
+        <br> <br>
+        {% endfor %}
+    </div>
+</div>
+    
+{% endblock %}
