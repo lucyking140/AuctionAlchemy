@@ -11,7 +11,11 @@ import re #for regular expressions
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
-app.config.from_pyfile('settings.py') #this gets the db uri
+app.config.from_pyfile('settings.py') #this gets the db uri and debug bool
+
+DB_URI = app.config['DB_URI']
+print(DB_URI)
+DEBUG = app.config['DEBUG']
 
 global current_user
 current_user = None
