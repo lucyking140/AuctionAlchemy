@@ -11,11 +11,12 @@ import re #for regular expressions
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
+app.config.from_pyfile('settings.py') #this gets the db uri
 
 global current_user
 current_user = None
 
-DATABASEURI = "postgresql://lk2936:378782@34.74.171.121/proj1part2"
+DATABASEURI = DB_URI #env_var
 
 engine = create_engine(DATABASEURI)
 
@@ -1270,7 +1271,7 @@ if __name__ == "__main__":
   import click
 
   @click.command()
-  @click.option('--debug', is_flag=True)
+  @click.option('--debug', is_flag=DEBUG) #env var
   @click.option('--threaded', is_flag=True)
   @click.argument('HOST', default='0.0.0.0')
   @click.argument('PORT', default=8111, type=int)
